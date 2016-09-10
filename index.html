@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="kibo.js"></script>
+</head>
+<html>
+<style>
+html body {
+   font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+}
+</style>
+    <body>
+      <div align = "center">
+        <h1>伤心的人别听慢歌</h1>
+        <video id = "v" controls loop src = "test.mp4"></video>
+        <canvas id="c"></canvas>
+        </div>
+        <script type = "text/javascript">
+
+            // ctx.fillRect(100,100,100,100);
+            // ctx.strokeRect(50,50,50,50);
+
+//0
+            // ctx.beginPath();
+            // ctx.moveTo(10,10);
+            // ctx.lineTo(50,50);
+            // ctx.lineTo(50,10);
+            // ctx.lineTo(10,10);
+            // ctx.fill();
+            //ctx.stroke();
+            // ctx.strokeStyle = "blue";
+//1
+            // ctx.strokeRect(50,50,100,100);
+            // ctx.beginPath();
+            // ctx.moveTo(75,75);
+            // ctx.lineTo(125,75);
+            // ctx.lineTo(125,125);
+            // ctx.fillStyle = "black";
+            // ctx.fill();
+//2
+            // ctx.font = "36pt Impact";
+            // ctx.textAlign = "center";
+
+            // ctx.fillStyle = "white";
+            // ctx.fillText("艺术字好丑啊",c.width / 2,200);
+
+            // ctx.strokeStyle = "black";
+            // ctx.lineWidth = 2;
+            // ctx.strokeText("艺术字好丑",c.width / 2,200);
+//3
+            // for (var i = 0; i < c.width; ) {
+            //     for(var j = 0; j < c.height;) {
+            //         ctx.strokeRect(i * ,j,c.width/10,c.width/10);
+            //         j = j + c.width/10;
+            //         if(j < c.height){
+            //             ctx.fillRect(i,j,c.width/10,c.width/10);
+            //             j = j + c.width/10;
+            //         }
+            //     }
+            //     i = i + c.width/10;
+            // }
+
+//4
+            // var data = ctx.getImageData(0,0,400,400);
+            // function paintGreen(image){
+            //     var nump = image.data.length/4;
+            //     for(var i = 0; i < nump; i++){
+            //       if( i % 10 === 0){
+            //         image.data[i*4 + 1] = 255;
+            //         image.data[i*4 + 3] = 255;
+            //       }
+            //     }
+            //     ctx.putImageData(image,0,0);
+            // }
+
+            //paintGreen(data);
+//5
+            var canvas = document.querySelector("canvas");
+            var ctx = c.getContext("2d");
+
+            document.addEventListener("DOMContentLoaded",function(){
+                var v = document.querySelector("#v");
+                var canvas = document.querySelector("#c");
+                var ctx = canvas.getContext("2d");
+                v.addEventListener('loadedmetadata',function(){
+                    canvas.width = this.videoWidth;
+                    canvas.height = this.videoHeight;
+                });
+
+                var draw = function(){
+                    canvas.getContext("2d").drawImage(v,0,0);
+                    requestAnimationFrame(draw);
+                }
+                v.addEventListener('play',function(){
+                    if(v.paused || v.ended) return;
+                    draw();
+                });
+            });
+
+
+        </script>
+    </body>
+</html>
